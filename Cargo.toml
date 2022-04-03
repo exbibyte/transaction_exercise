@@ -1,0 +1,38 @@
+[package]
+name = "transaction_exercise"
+version = "0.1.0"
+edition = "2021"
+default-run = "driver_threaded"
+
+[dependencies]
+csv = "1.1"
+serde = { version = "1.0", features = ["derive"] }
+rand = "0.8.5"
+crossbeam = "0.8"
+num_cpus = "1.13.1"
+
+[lib]
+name="transaction"
+path="src/lib.rs"
+
+[[bin]]
+name = "generate_data"
+
+#single core
+[[bin]]
+name = "driver"
+
+#multicore
+[[bin]]
+name = "driver_threaded"
+
+[dev-dependencies]
+criterion = "0.3"
+
+[[bench]]
+name = "transaction_bench"
+harness = false
+
+[[bench]]
+name = "transaction_bench_parallel"
+harness = false
